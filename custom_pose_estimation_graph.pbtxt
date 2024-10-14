@@ -1,0 +1,13 @@
+# This node runs the MediaPipe pose estimation model
+node {
+  calculator: "PoseLandmarkCpu"
+  input_stream: "IMAGE:input_image"
+  output_stream: "LANDMARKS:pose_landmarks"
+}
+
+# This is your custom calculator for calculating distance between landmarks
+node {
+  calculator: "LandmarkDistanceCalculator"  # Refers to your custom calculator
+  input_stream: "LANDMARKS:pose_landmarks"
+  output_stream: "DISTANCE:shoulder_distance"
+}
